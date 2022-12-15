@@ -50,8 +50,8 @@
         return fetch(`${this._baseUrl}/cards/${id}`,{
           method: "DELETE",
           headers: this._headers,
-        }).then(this._checkStatus())
-        
+        }).then(this._checkStatus)
+        .catch(console.log)
       }
     
       deleteLike(id) {
@@ -70,6 +70,10 @@
         }).then(this._checkStatus())
        
       }
+
+      checkLikeCardStatus(id, isLiked) {
+        return isLiked ? this.addLike(id) : this.deleteLike(id);
+      }
     
       editAvatar( avatar ) {
         return fetch(`${this._baseUrl}/users/me/avatar`,{
@@ -80,10 +84,11 @@
           })
         }).then(this._checkStatus())
         
+        
       }
       _checkStatus() {
         return res => res.ok ? res.json() : Promise.reject(res.status); 
-      } 
+      }   
     }
  
   
