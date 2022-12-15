@@ -25,7 +25,6 @@ function App() {
 		Promise.all([api.getProfile(), api.getInitialCards()])
 			.then(([infoUsers, card]) => {
 				setCurrentUser(infoUsers);
-				console.log(infoUsers);
 				setCards(card);
 			}).catch((err) => console.log(err))
 	}, []);
@@ -39,9 +38,11 @@ function App() {
 		// Снова проверяем, есть ли уже лайк на этой карточке
 		const isLiked = card.likes.some((user) => user._id === currentUser._id);
 		// Отправляем запрос в API и получаем обновлённые данные карточки
-		api.checkLikeCardStatus(card._id, !isLiked).then((newCard) => {
+		api.checkLikeCardStatus(card._id, !isLiked)
+		.then((newCard) => {
 			setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
 		})
+		.catch((err) => console.log(err))
 	}
 	const handleEditAvatarClick = () => {
 		setIsEditAvatarPopupOpen(true);

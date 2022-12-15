@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef } from 'react';
 import PopupWithForm from "./PopupWithForm";
 
@@ -7,7 +8,8 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
 
     useEffect(() => {
         linkHelper.current.value = "";
-    });
+        console.log('lol');
+    }, [isOpen]);
 
     function handleSubmit(e) {
         e.preventDefault();

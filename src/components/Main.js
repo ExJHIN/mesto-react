@@ -41,7 +41,13 @@ function Main({ cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, onC
 			<ul className="elements">
 				{cards.map((card) => {
 					return (
-						<Card key={card._id} card={card} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete} />
+						<Card 
+						key={card._id} 
+						card={card} 
+						onCardClick={onCardClick} 
+						onCardLike={onCardLike} 
+						onCardDelete={onCardDelete} 
+						/>
 					);
 				})}
 			</ul>
