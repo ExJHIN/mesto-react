@@ -1,37 +1,29 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useRef } from 'react';
+import {useEffect,useRef} from 'react';
 import PopupWithForm from "./PopupWithForm";
 
-function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
+function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
 
-    const linkHelper = useRef();
+  const linkRef = useRef();
 
-    useEffect(() => {
-        linkHelper.current.value = "";
-        console.log('lol');
-    }, [isOpen]);
+  useEffect(() => {
+    linkRef.current.value = "";
+  });
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        onUpdateAvatar({
-            avatar: linkHelper.current.value
-        });
-    }
+  function handleSubmit(e) {
+    e.preventDefault();
+    onUpdateAvatar({
+      avatar: linkRef.current.value
+    });
+  }
 
-    return (
-        <PopupWithForm name="change-avatar" title="Обновить аватар" isOpen={isOpen} onClose={onClose} onSubmit={handleSubmit}> 
-            <input
-                className="form__input form__input_text_name"
-                name="avatar"
-                ref={linkHelper} 
-                type="url"  
-                id = "avatar"
-                placeholder="Ссылка на картинку"
-                required
-            />
-            <span className="form__input-error popup__error id-input-error avatar-error" id=""></span>
-        </PopupWithForm>
-    );
+  return (
+    <PopupWithForm name="change-avatar" title="Обновить аватар" isOpen = {isOpen} onClose = {onClose} onSubmit={handleSubmit}>
+      <label className="popup__profile-info">
+        <input ref={linkRef} type="url" name = "avatar" id = "avatar" className = "popup__input popup__input_avatar" placeholder="Ссылка на картинку" required></input>
+        <span className="avatar-error popup__error" id=""></span>
+      </label>
+    </PopupWithForm>
+  );
 }
 
 export default EditAvatarPopup;

@@ -1,18 +1,13 @@
-import logo from '../images/logo-header.svg';
-import React from "react";
+import React from 'react';
+import logo from '../images/logo_header.svg';
 
-function Header (){
-    return(
-        <header className="header">
-				<div className="container">
-					<img
-						className="header__logo"
-						src={logo}
-						alt="Логотип сайта
-						Место."
-						/>
-				</div>
-			</header>
-    );
+function Header({children}) {
+  return (
+    <header className="header">
+      <img className="header__logo" src={logo} alt="логотип проекта 'Меcто'."></img>
+      {children}
+    </header>
+  );
 }
+
 export default Header;
